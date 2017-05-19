@@ -1,311 +1,289 @@
 package GameRule;
 
-/**
- * Created by admin on 2017/1/1.
- */
-//判断动物是否可以移动
+import Player.PlayerActions;
+import Roles.Character;
+
 public class GameRule {
-    public  GameRule(){
+    public  GameRule() {
+    	;
     }
 
-    //判断普通动物可否向上
-    public boolean canNormalUp(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(i >= 1){
-            if(numberOfMap[i-1][j] == 1){
-                return false;
-            }else if(theTeam[i][j] == theTeam[i-1][j]){
-                return false;
-            }else if((theTeam[i][j] ==1 && numberOfMap[i-1][j] == 3) || (numberOfMap[i-1][j] == 5 && theTeam[i][j] == -1 )){
-                return false;
-            }else if((theTeam[i][j] == 1 && numberOfMap[i-1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i-1][j] == 4)){
-                return true;
-            } if(theTeam[i][j] != theTeam[i-1][j] && numberOfAnimal[i][j] == 8 && numberOfAnimal[i-1][j] == 1){
-                return false;
-            } else if(theTeam[i][j] != theTeam[i-1][j] && numberOfAnimal[i][j] < numberOfAnimal[i-1][j]){
-                return false;
-            }else
-                return true;
-        }else {
-            return false;
-        }
-    }
-
-    //判断普通动物是否可以向下
-    public boolean canNormalDown(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(i < 6){
-            if(numberOfMap[i+1][j] == 1){
-                return false;
-            }else if(theTeam[i][j] == theTeam[i+1][j]){
-                return false;
-            }else if((theTeam[i][j] ==1 && numberOfMap[i+1][j] == 3) || (numberOfMap[i+1][j] == 5 && theTeam[i][j] == -1 )){
-                return false;
-            }else if((theTeam[i][j] == 1 && numberOfMap[i+1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i+1][j] == 4)){
-                return true;
-            }if(theTeam[i][j] != theTeam[i+1][j] && numberOfAnimal[i][j] == 8 && numberOfAnimal[i+1][j] == 1){
-                return false;
-            } else if(theTeam[i][j] != theTeam[i+1][j] && numberOfAnimal[i][j] < numberOfAnimal[i+1][j]){
-                return false;
-            }else
-                return true;
-        }else {
-            return false;
-        }
-    }
-
-    //判断普通动物可否向左
-    public boolean canNormalLeft(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(j >= 1){
-            if(numberOfMap[i][j-1] == 1){
-                return false;
-            }else if(theTeam[i][j] == theTeam[i][j-1]){
-                return false;
-            }else if((theTeam[i][j] ==1 && numberOfMap[i][j-1] == 3) || (numberOfMap[i][j-1] == 5 && theTeam[i][j] == -1 )){
-                return false;
-            }else if((theTeam[i][j] == 1 && numberOfMap[i][j-1] ==2) || (theTeam[i][j] == -1 && numberOfMap[i][j-1] == 4)){
-                return true;
-            } if(theTeam[i][j] != theTeam[i][j-1] && numberOfAnimal[i][j] == 8 && numberOfAnimal[i][j-1] == 1){
-                return false;
-            }else if(theTeam[i][j] != theTeam[i][j-1] && numberOfAnimal[i][j] < numberOfAnimal[i][j-1]){
-                return false;
-            }else
-                return true;
-        }else {
-            return false;
-        }
-    }
-
-    //判断普通动物是否可以向右
-    public boolean canNormalRight(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(j < 8){
-            if(numberOfMap[i][j+1] == 1){
-                return false;
-            }else if(theTeam[i][j] == theTeam[i][j+1]){
-                return false;
-            }else if((theTeam[i][j] ==1 && numberOfMap[i][j+1] == 3) || (numberOfMap[i][j+1] == 5 && theTeam[i][j] == -1 )){
-                return false;
-            }else if((theTeam[i][j] == 1 && numberOfMap[i][j+1] ==2) || (theTeam[i][j] == -1 && numberOfMap[i][j+1] == 4)){
-                return true;
-            }if(theTeam[i][j] != theTeam[i][j+1] && numberOfAnimal[i][j] == 8 && numberOfAnimal[i][j+1] == 1){
-                return false;
-            } else if(theTeam[i][j] != theTeam[i][j+1] && numberOfAnimal[i][j] < numberOfAnimal[i][j+1]){
-                return false;
-            }else
-                return true;
-        }else {
-            return false;
-        }
-    }
-
-    //判断老鼠可否向上
-    public boolean canMouseUp(int[][] theTeam, int[][] numberOfAnimal, int[][] numberOfMap, int i, int j){
-        if(i >= 1){
-            if(numberOfMap[i-1][j] == 1){
-                return true;
-            }else{
-                if(theTeam[i][j] == theTeam[i-1][j]){
+    
+    public boolean canMoveOneStep(int direction, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, int i, int j) {
+    	switch(direction) {
+    	case Control.UP:
+    		if (i > 0) {
+                if(numberOfMap[i-1][j] == Control.areaUnavailable) {
                     return false;
-                }else if(numberOfMap[i][j] == 1 && numberOfAnimal[i-1][j] == 8){
-                    return false;
-                } else if((theTeam[i][j] ==1 && numberOfMap[i-1][j] == 3) || (numberOfMap[i-1][j] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i-1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i-1][j] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i-1][j] && (numberOfAnimal[i-1][j] != 8
-                        && numberOfAnimal[i][j] < numberOfAnimal[i-1][j])){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
-    }
-
-    //判断老鼠可否向下
-    public boolean canMouseDown(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(i < 6){
-            if(numberOfMap[i+1][j] == 1){
-                return true;
-            }else{
-                if(theTeam[i][j] == theTeam[i+1][j]){
-                    return false;
-                }else if(numberOfMap[i][j] == 1 && numberOfAnimal[i+1][j] == 8){
-                    return false;
-                } else if((theTeam[i][j] ==1 && numberOfMap[i+1][j] == 3) || (numberOfMap[i+1][j] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i+1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i+1][j] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i+1][j] && (numberOfAnimal[i+1][j] != 8
-                        && numberOfAnimal[i][j] < numberOfAnimal[i+1][j])){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
-    }
-
-    //判断老鼠可否向左
-    public boolean canMouseLeft(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(j >= 1){
-            if(numberOfMap[i][j-1] == 1){
-                return true;
-            }else{
-                if(theTeam[i][j] == theTeam[i][j-1]){
-                    return false;
-                }else if(numberOfMap[i][j] == 1 && numberOfAnimal[i][j-1] == 8){
-                    return false;
-                } else if((theTeam[i][j] ==1 && numberOfMap[i][j-1] == 3) || (numberOfMap[i][j-1] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i][j-1] ==2) || (theTeam[i][j] == -1 && numberOfMap[i][j-1] == 4)){
-                    return true;
                 }
-                else if(theTeam[i][j] != theTeam[i][j-1] && (numberOfAnimal[i][j-1] != 8
-                        && numberOfAnimal[i][j] < numberOfAnimal[i][j-1])){
-                    return false;
-                }else
-                    return true;
+                else if(theTeam[i][j] == theTeam[i-1][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
             }
-        }else
-            return false;
+            else {
+            	return false;
+            }
+    	case Control.DOWN:
+    		if(i < 9) {
+                if(numberOfMap[i+1][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i+1][j]) {
+                	return false;
+                }
+                else{
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	case Control.LEFT:
+    		if(j > 0) {
+                if (numberOfMap[i][j-1] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j-1]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	case Control.RIGHT:
+    		if(j < 9) {
+                if(numberOfMap[i][j+1] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j+1]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	}
+    	return false;
+    }
+    
+    public boolean canMoveTwoSteps(int direction, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, int i, int j) {
+    	boolean result = false;
+    	switch(direction) {
+    	case Control.UP:
+    		if(i > 1) {
+                if(numberOfMap[i-1][j] == Control.areaUnavailable || numberOfMap[i-2][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i-1][j] || theTeam[i][j] == theTeam[i-2][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    		
+    	case Control.DOWN:
+    		if(i < 8) {
+                if(numberOfMap[i+1][j] == Control.areaUnavailable || numberOfMap[i+2][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i+1][j] || theTeam[i][j] == theTeam[i+2][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    		
+    	case Control.LEFT:
+    		if(j > 1) {
+                if (numberOfMap[i][j-1] == Control.areaUnavailable || numberOfMap[i][j-2] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j-1] || theTeam[i][j] == theTeam[i][j-2]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }            
+    	case Control.RIGHT:
+    		if(j < 8) {
+                if(numberOfMap[i][j+1] == Control.areaUnavailable || numberOfMap[i][j+2] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j+1] || theTeam[i][j] == theTeam[i][j+2]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	}
+    	return result;	
     }
 
-    //判断老鼠可否向右
-    public boolean canMouseRight(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if(j < 8){
-            if(numberOfMap[i][j+1] == 1){
-                return true;
-            }else{
-                if(theTeam[i][j] == theTeam[i][j+1]){
-                    return false;
-                }else if(numberOfMap[i][j] == 1 && numberOfAnimal[i][j+1] == 8){
-                    return false;
-                } else if((theTeam[i][j] ==1 && numberOfMap[i][j+1] == 3) || (numberOfMap[i][j+1] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i][j+1] ==2) || (theTeam[i][j] == -1 && numberOfMap[i][j+1] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i][j+1] && (numberOfAnimal[i][j+1] != 8
-                        && numberOfAnimal[i][j] < numberOfAnimal[i][j+1])){
-                    return false;
-                }else
-                    return true;
+    public int judgeAction(int k, int m, int i, int j, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap) {
+		if (canMoveOneStep(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && i == k - 1 && j == m) {
+			return Control.UP;
+		}
+		else if (canMoveOneStep(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && i == k + 1 && j == m) {
+			return Control.DOWN;
+		}
+		else if (canMoveOneStep(Control.LEFT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m - 1 && i == k) {
+			return Control.LEFT;
+		}
+		else if (canMoveOneStep(Control.RIGHT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m + 1 && i == k) {
+			return Control.RIGHT;
+		}
+		else if (canMoveTwoSteps(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && i == k - 2 && j == m) {
+			return Control.UP2;
+		}
+		else if (canMoveTwoSteps(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && i == k + 2 && j == m) {
+			return Control.DOWN2;
+		}
+		else if (canMoveTwoSteps(Control.LEFT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m - 2 && i == k) {
+			return Control.LEFT2;
+		}
+		else if (canMoveTwoSteps(Control.RIGHT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m + 2 && i == k) {
+			return Control.RIGHT2;
+		}
+		return Control.INVALID;
+	}
+    
+    private boolean diedOut(int player, int[][] theTeam) {
+    	boolean result = true;
+    	if (player == PlayerActions.LEFT_PLAYER) {
+    		for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    if (theTeam[i][j] == 1){
+                        result =  false;
+                    }
+                }
             }
-        }else
-            return false;
+    	}
+    	else {
+    		for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    if(theTeam[i][j] == 1){
+                        result =  false;
+                    }
+                }
+            }
+    	}
+    	
+    	return result;
+    }
+    
+    
+    private boolean enterTheCapital(int player, int[][] theTeam) {
+    	boolean result = true;
+    	if (player == PlayerActions.LEFT_PLAYER) {
+    		if (theTeam[0][9] == PlayerActions.LEFT_PLAYER) {
+    			result = true;
+    		}
+    		else {
+    			result = false;
+    		}
+    	}
+    	else {
+    		if (theTeam[9][0] == PlayerActions.RIGHT_PLAYER) {
+    			result = true;
+    		}
+    		else {
+    			result = false;
+    		}
+    	}
+    	return result;
+    }
+    
+    private boolean canNotMove(int player, int[][] theTeam, int[][] numberOfRoles, int[][] numberOfMap) {
+    	boolean result = false;
+    	for (int i = 0; i < 10; i++) {
+    		for (int j = 0; j < 10; j++) {
+    			if (player == PlayerActions.LEFT_PLAYER) {
+    				if (numberOfRoles[i][j] == Character.infantry) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else if (numberOfRoles[i][j] == Character.cavalryman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j) || canMoveTwoSteps(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+    			}
+    			else {
+    				if (numberOfRoles[i][j] == Character.infantry) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else if (numberOfRoles[i][j] == Character.cavalryman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j) || canMoveTwoSteps(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+    			}
+    		}
+    	}
+    	return result;
     }
 
-    //判断狮虎可否向上
-    public boolean canTigerUp(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if (i >= 1){
-            if(numberOfMap[i-1][j] !=1){
-                if(theTeam[i][j] == theTeam[i-1][j]){
-                    return false;
-                }else if((theTeam[i][j] ==1 && numberOfMap[i-1][j] == 3) || (numberOfMap[i-1][j] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i-1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i-1][j] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i-1][j] && numberOfAnimal[i][j] < numberOfAnimal[i-1][j]){
-                    return false;
-                }else
-                    return true;
-            }else {
-                if((numberOfAnimal[i-1][j] == 1 || numberOfAnimal[i-2][j] == 1) &&
-                        (theTeam[i-1][j] == -theTeam[i][j] || theTeam[i][j] == -theTeam[i-2][j]) ){
-                    return false;
-                }else if(theTeam[i][j] == theTeam[i-3][j]){
-                    return false;
-                }else if(numberOfAnimal[i][j] < numberOfAnimal[i-3][j]){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
+    public boolean leftWin(int[][] theTeam, int[][] numberOfRoles, int[][] numberOfMap) {
+    	if (canNotMove(PlayerActions.LEFT_PLAYER, theTeam, numberOfRoles, numberOfMap) || diedOut(PlayerActions.LEFT_PLAYER, theTeam) || enterTheCapital(PlayerActions.LEFT_PLAYER, theTeam)) {
+    		return true;
+    	}
+    	return false;
     }
-
-    //判断狮虎可否向下
-    public boolean canTigerDown(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if (i < 6){
-            if(numberOfMap[i+1][j] !=1){
-                if(theTeam[i][j] == theTeam[i+1][j]){
-                    return false;
-                }else if((theTeam[i][j] ==1 && numberOfMap[i+1][j] == 3) || (numberOfMap[i+1][j] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i+1][j] ==2) || (theTeam[i][j] == -1 && numberOfMap[i+1][j] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i+1][j] && numberOfAnimal[i][j] < numberOfAnimal[i+1][j]){
-                    return false;
-                }else
-                    return true;
-            }else {
-                if((numberOfAnimal[i+1][j] == 1 || numberOfAnimal[i+2][j] == 1) &&
-                        (theTeam[i+1][j] == -theTeam[i][j] || theTeam[i+2][j] == -theTeam[i][j]) ){
-                    return false;
-                }else if(theTeam[i][j] == theTeam[i+3][j]){
-                    return false;
-                }else if(numberOfAnimal[i][j] < numberOfAnimal[i+3][j]){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
-    }
-
-    //判断狮虎可否向左
-    public boolean canTigerLeft(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if (j >= 1){
-            if(numberOfMap[i][j-1] !=1){
-                if(theTeam[i][j] == theTeam[i][j-1]){
-                    return false;
-                }else if((theTeam[i][j] ==1 && numberOfMap[i][j-1] == 3) || (numberOfMap[i][j-1] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i][j-1] == 2) || (theTeam[i][j] == -1 && numberOfMap[i][j-1] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i][j-1] && numberOfAnimal[i][j] < numberOfAnimal[i][j-1]){
-                    return false;
-                }else
-                    return true;
-            }else {
-                if((numberOfAnimal[i][j-1] == 1 || numberOfAnimal[i][j-2] == 1 || numberOfAnimal[i][j-3] == 1) &&
-                        (theTeam[i][j-1] == -theTeam[i][j] || theTeam[i][j-2] == -theTeam[i][j] || theTeam[i][j-3] == -theTeam[i][j])){
-                    return false;
-                }else if(theTeam[i][j] == theTeam[i-4][j]){
-                    return false;
-                }else if(numberOfAnimal[i][j] < numberOfAnimal[i-4][j]){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
-    }
-
-    //判断狮虎可否向右
-    public boolean canTigerRight(int[][] theTeam, int[][] numberOfAnimal, int[][]numberOfMap, int i, int j){
-        if (j < 8){
-            if(numberOfMap[i][j+1] !=1){
-                if(theTeam[i][j] == theTeam[i][j+1]){
-                    return false;
-                }else if((theTeam[i][j] ==1 && numberOfMap[i][j+1] == 3) || (numberOfMap[i][j+1] == 5 && theTeam[i][j] == -1 )){
-                    return false;
-                }else if((theTeam[i][j] == 1 && numberOfMap[i][j+1] == 2) || (theTeam[i][j] == -1 && numberOfMap[i][j+1] == 4)){
-                    return true;
-                } else if(theTeam[i][j] != theTeam[i][j+1] && numberOfAnimal[i][j] < numberOfAnimal[i][j+1]){
-                    return false;
-                }else
-                    return true;
-            }else {
-                if((numberOfAnimal[i][j+1] == 1 || numberOfAnimal[i][j+2] == 1 || numberOfAnimal[i][j+3] == 1) &&
-                        (theTeam[i][j+1] == -theTeam[i][j] || theTeam[i][j+2] == -theTeam[i][j] || theTeam[i][j+3] == -theTeam[i][j])){
-                    return false;
-                }else if(theTeam[i][j] == theTeam[i+4][j]){
-                    return false;
-                }else if(numberOfAnimal[i][j] < numberOfAnimal[i+4][j]){
-                    return false;
-                }else
-                    return true;
-            }
-        }else
-            return false;
+    
+    public boolean rightWin(int[][] theTeam, int[][] numberOfRoles, int[][] numberOfMap) {
+    	if (canNotMove(PlayerActions.RIGHT_PLAYER, theTeam, numberOfRoles, numberOfMap) || diedOut(PlayerActions.RIGHT_PLAYER, theTeam) || enterTheCapital(PlayerActions.RIGHT_PLAYER, theTeam)) {
+    		return true;
+    	}
+    	return false;
     }
 }

@@ -1,0 +1,11 @@
+package Roles;
+
+public class Infantry extends Character {
+	public Infantry(int team, int initX, int initY) {
+		super(initX, initY, team);
+		this.level = Character.infantry;
+		this.attackDistance = Character.attackDistanceShort;
+		this.moveDistance = Character.moveDistanceShort;
+	}
+
+}

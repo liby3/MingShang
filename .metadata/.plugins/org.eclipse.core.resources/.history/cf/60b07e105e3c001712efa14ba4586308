@@ -1,0 +1,18 @@
+package Player;
+
+public class PlayerActions {
+	private
+		boolean currentPlayer;
+	public PlayerActions() {
+		currentPlayer = true;
+	}
+	
+	public void changePlayer() {
+		currentPlayer = !currentPlayer;
+	}
+	
+	public boolean getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+}

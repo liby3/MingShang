@@ -1,0 +1,29 @@
+package Roles;
+
+import GameRule.Control;
+import javafx.scene.image.Image;
+
+public class Infantry extends Character {
+	private
+		Image figure1;
+	public Infantry(int team, int initX, int initY) {
+		super(initX, initY, team);
+		//this.level = Character.infantry;
+		//this.attackDistance = Character.attackDistanceShort;
+		//this.moveDistance = Character.moveDistanceShort;
+		if (team == Control.LEFT_PLAYER) {
+			System.out.println("eee");
+			figure1 = new Image("pic/roles/left/infantryLeft.png");
+		}
+		else {
+			System.out.println("fff");
+			figure1 = new Image("pic/roles/right/infantryRight.png");
+		}
+	
+	}
+	public Image getFigure1() {
+		return this.figure1;
+	}
+	
+
+}

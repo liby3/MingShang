@@ -1,0 +1,22 @@
+package Roles;
+
+import GameRule.Control;
+import javafx.scene.image.Image;
+
+public class Cavalryman extends Character {
+	public Cavalryman(int team, int initX, int initY) {
+		super(initX, initY, team);
+		level = Character.archer;
+		attackDistance = Character.attackDistanceLong;
+		moveDistance = Character.moveDistanceShort;
+		if (team == Control.LEFT_PLAYER) {
+			figure = new Image("pic/roles/left/archerLeft.png");
+		}
+		else {
+			
+			figure = new Image("pic/roles/right/archerRight.png");
+		}
+	
+	}{
+
+}

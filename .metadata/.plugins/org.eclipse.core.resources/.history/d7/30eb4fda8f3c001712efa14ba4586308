@@ -1,0 +1,31 @@
+package Roles;
+
+import GameRule.Control;
+import GameRule.GameRule;
+import Player.PlayerActions;
+import javafx.scene.image.Image;
+
+public class Archer extends Character {
+	public Archer(int initX, int initY, int team) {
+		super(initX, initY, team);
+		level = Character.archer;
+		attackDistance = Character.attackDistanceLong;
+		moveDistance = Character.moveDistanceShort;
+		currentDistance = Character.moveDistanceShort;
+		if (team == PlayerActions.LEFT_PLAYER) {
+			figure = new Image("pic/roles/archerLeft.png");
+		}
+		else {
+			
+			figure = new Image("pic/roles/archerRight.png");
+		}
+		setCharacterViewAttribute();
+	}
+	
+	public int judgeAction(int k, int m, int i, int j, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, GameRule g) {
+		if (g.canMoveOneStep(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && i  == k - 1 && j == m) {
+			return Control.UP;
+		}
+		return Control.INVALID;
+	}
+}

@@ -1,0 +1,10 @@
+package Player;
+
+public class PlayerActions {
+	private
+		boolean currentPlayer;
+	public PlayerActions() {
+		currentPlayer = true;
+	}
+
+}

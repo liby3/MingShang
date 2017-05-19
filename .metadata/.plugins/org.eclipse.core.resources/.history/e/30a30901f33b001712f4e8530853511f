@@ -1,0 +1,75 @@
+package Roles;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class CharacterView {
+	private 
+		//ImageView characterImage[][];
+		ImageView characterImage;
+		public CharacterView(int roles) {
+			characterImage = new ImageView();
+			
+		}
+	
+	/*public CharacterView(int team[][], int roles[][]) throws FileNotFoundException {
+		characterImage = new ImageView[10][10];
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 10; ++j) {
+				characterImage[i][j] = new ImageView();
+				switch(roles[i][j]) {
+					case Character.infantry:
+						Infantry infantry = new Infantry(team[i][j], i, j);
+						setCharacterViewAttribute(i, j, infantry.getFigure());
+						break;
+					case Character.archer:
+						Archer archer = new Archer(team[i][j], i, j);						
+						setCharacterViewAttribute(i, j, archer.getFigure());
+						break;
+					case Character.cavalryman:
+						Cavalryman cavalryman = new Cavalryman(team[i][j], i, j);
+						setCharacterViewAttribute(i, j, cavalryman.getFigure());
+						break;
+					default:
+						setCharacterViewAttribute(i, j, null);
+						break;
+				}
+			}
+		}
+	}*/
+	
+	/*public ImageView[][] getCharacterImage() {
+		return characterImage;
+	}*/
+	
+	/*private void setCharacterViewAttribute(int i, int j, Image figure) {
+		if (figure != null) {
+			characterImage[i][j].setImage(figure);
+			characterImage[i][j].setFitWidth(40);
+			characterImage[i][j].setFitHeight(60);
+			characterImage[i][j].setLayoutX(60 * j + 100);
+			characterImage[i][j].setLayoutY(50 + 60 * i);
+		}
+		else {
+			characterImage[i][j].setFitWidth(40);
+			characterImage[i][j].setFitHeight(60);
+			characterImage[i][j].setLayoutX(60 * j + 100);
+			characterImage[i][j].setLayoutY(50 + 60 * i);
+		}
+	}*/
+	private void setCharacterViewAttribute(int i, int j, Image figure) {
+		if (figure != null) {
+			characterImage.setImage(figure);
+			characterImage.setFitWidth(40);
+			characterImage.setFitHeight(60);
+			characterImage.setLayoutX(60 * j + 100);
+			characterImage.setLayoutY(50 + 60 * i);
+		}
+		else {
+			characterImage.setFitWidth(40);
+			characterImage.setFitHeight(60);
+			characterImage.setLayoutX(60 * j + 100);
+			characterImage.setLayoutY(50 + 60 * i);
+		}
+	}
+}

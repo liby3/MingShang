@@ -1,0 +1,60 @@
+package Roles;
+
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class CharacterView {
+	private ImageView characterImage[][];
+	
+	public CharacterView(int team[][], int roles[][]) throws FileNotFoundException {
+		characterImage = new ImageView[10][10];
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 10; ++j) {
+				characterImage[i][j] = new ImageView();
+				switch(roles[i][j]) {
+					case Character.infantry:
+						Infantry infantry = new Infantry(team[i][j], i, j);						
+						characterImage[i][j].setImage(infantry.getFigure());
+						characterImage[i][j].setFitWidth(40);
+						characterImage[i][j].setFitHeight(60);
+						characterImage[i][j].setLayoutX(60 * j + 100);
+						characterImage[i][j].setLayoutY(50 + 60 * i);
+						break;
+					case Character.archer:
+						Archer archer = new Archer(team[i][j], i, j);						
+						characterImage[i][j].setImage(archer.getFigure());
+						characterImage[i][j].setFitWidth(40);
+						characterImage[i][j].setFitHeight(60);
+						characterImage[i][j].setLayoutX(60 * j + 100);
+						characterImage[i][j].setLayoutY(50 + 60 * i);
+						break;
+					case Character.cavalryman:
+						Cavalryman cavalryman = new Cavalryman(team[i][j], i, j);						
+						characterImage[i][j].setImage(cavalryman.getFigure());
+						characterImage[i][j].setFitWidth(40);
+						characterImage[i][j].setFitHeight(60);
+						characterImage[i][j].setLayoutX(60 * j + 100);
+						characterImage[i][j].setLayoutY(50 + 60 * i);
+						break;
+					default:
+						characterImage[i][j].setFitWidth(40);
+						characterImage[i][j].setFitHeight(60);
+						characterImage[i][j].setLayoutX(60 * j + 100);
+						characterImage[i][j].setLayoutY(50 + 60 * i);
+						break;
+				}
+			}
+		}
+	}
+	
+	public ImageView[][] getCharacterImage() {
+		return characterImage;
+	}
+	
+	private void setCharacterViewAttribute(int i, int j, Image figure) {
+		
+	}
+
+}

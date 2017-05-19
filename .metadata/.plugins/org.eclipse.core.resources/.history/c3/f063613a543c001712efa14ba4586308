@@ -1,0 +1,15 @@
+package Roles;
+
+import GameRule.Control;
+import javafx.scene.image.Image;
+
+public class NoCharacter extends Character {
+	public NoCharacter(int team, int initX, int initY) {
+		super(team, initX, initY);
+		level = Character.nocharacter;
+		attackDistance = Character.nocharacter;
+		moveDistance = Character.nocharacter;
+		figure = null;
+		setCharacterViewAttribute();
+	}
+}

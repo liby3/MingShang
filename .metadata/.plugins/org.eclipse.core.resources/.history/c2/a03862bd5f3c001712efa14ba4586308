@@ -1,0 +1,22 @@
+package Player;
+
+public class PlayerActions {
+	
+	public final static int LEFT_PLAYER = 1;
+	public final static int RIGHT_PLAYER = -1;
+
+	private
+		boolean currentPlayer;
+	public PlayerActions() {
+		currentPlayer = true;
+	}
+	
+	public void changePlayer() {
+		currentPlayer = !currentPlayer;
+	}
+	
+	public boolean getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+}

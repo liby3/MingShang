@@ -1,0 +1,7 @@
+package Map;
+
+import javafx.scene.shape.Rectangle;
+
+public class DrawRectangle {
+	Rectangle rectangle[][];
+}

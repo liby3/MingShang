@@ -1,0 +1,12 @@
+package Roles;
+
+public class NoCharacter extends Character {
+	public NoCharacter(int initX, int initY, int team) {
+		super(initX, initY, team);
+		this.level = Character.nocharacter;
+		this.attackDistance = Character.nocharacter;
+		this.moveDistance = Character.nocharacter;
+		this.figure = null;
+		setCharacterViewAttribute();
+	}
+}

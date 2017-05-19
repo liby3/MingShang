@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="Map.MapImage"/>
+<fullyQualifiedTypeName name="com.sun.prism.Image"/>
+<fullyQualifiedTypeName name="Map.Capital"/>
+<fullyQualifiedTypeName name="Roles.Soldiers"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="UI.Page.DifferentPane.MapPane.PromptHandler"/>
+<fullyQualifiedTypeName name="Media.SoundControl"/>
+<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+<fullyQualifiedTypeName name="Roles.Cavalryman"/>
+<fullyQualifiedTypeName name="Roles.Archer"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="Roles.CharacterView"/>
+<fullyQualifiedTypeName name="Roles.NoCharacter"/>
+<fullyQualifiedTypeName name="Roles.Character"/>
+<fullyQualifiedTypeName name="Player.PlayerActions"/>
+<fullyQualifiedTypeName name="GameRule.Control"/>
+<fullyQualifiedTypeName name="GameRule.GameHistory"/>
+<fullyQualifiedTypeName name="FileOperation.ReadRoles"/>
+<fullyQualifiedTypeName name="GameRule.GameRule"/>
+<fullyQualifiedTypeName name="Roles.Infantry"/>
+</qualifiedTypeNameHistroy>

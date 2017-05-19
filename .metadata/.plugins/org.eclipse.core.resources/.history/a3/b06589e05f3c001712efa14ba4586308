@@ -1,0 +1,30 @@
+package Player;
+
+import javafx.scene.shape.Rectangle;
+
+public class PlayerActions {
+	
+	public final static boolean LEFT_PLAYER = true;
+	public final static boolean RIGHT_PLAYER = false;
+
+	private
+		boolean currentPlayer;
+	public PlayerActions() {
+		currentPlayer = true;
+	}
+	
+	public void changePlayer() {
+		currentPlayer = !currentPlayer;
+	}
+	
+	public boolean getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
+	public void setPlayer(Rectangle left, Rectangle right) {
+		if (currentPlayer == LEFT_PLAYER) {
+			
+		}
+	}
+
+}

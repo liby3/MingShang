@@ -1,0 +1,150 @@
+package GameRule;
+
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+import Roles.Character;
+
+
+
+
+public class Control {
+
+	public final static int areaAvailable = 0;
+	public final static int areaUnavailable = 1;
+	
+	public final static int UP = 1;
+	public final static int DOWN = 2;
+	public final static int LEFT = 3;
+	public final static int RIGHT = 4;
+	
+	public final static int LEFT_PLAYER = 1;
+	public final static int RIGHT_PLAYER = -1;
+	
+	
+	
+    public Control()  {
+    	;
+    }
+
+    
+    //向上移动一格
+    public void turnUp(int[][] theTeam, int[][] numberOfRoles, Character[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i - 1][j] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i - 1][j] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i - 1][j].getCharacterView().setImage(rolesImage[i][j].getCharacterView().getImage());
+        rolesImage[i][j].getCharacterView().setImage(null);
+    }
+
+    //向下移动一格
+    public void turnDown(int[][] theTeam, int[][] numberOfRoles, Character[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i + 1][j] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i + 1][j] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i + 1][j].getCharacterView().setImage(rolesImage[i][j].getCharacterView().getImage());
+        rolesImage[i][j].getCharacterView().setImage(null);
+    }
+
+    //向左移动一格
+    public void turnLeft(int[][] theTeam, int[][] numberOfRoles, Character[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i][j - 1] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i][j - 1] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i][j - 1].setImage(rolesImage[i][j].getImage());
+        rolesImage[i][j].setImage(null);
+    }
+
+    //向右移动一格
+    public void turnRight(int[][] theTeam, int[][] numberOfAnimal, ImageView[][] animalImage, int i, int j, boolean player) {
+        theTeam[i][j + 1] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfAnimal[i][j + 1] = numberOfAnimal[i][j];
+        numberOfAnimal[i][j] = 0;
+        animalImage[i][j + 1].setImage(animalImage[i][j].getImage());
+        animalImage[i][j].setImage(null);
+    }
+
+    //向上移动2格
+    public void turnTwoStepsUp(int[][] theTeam, int[][] numberOfRoles, ImageView[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i - 2][j] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i - 2][j] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i - 2][j].setImage(rolesImage[i][j].getImage());
+        rolesImage[i][j].setImage(null);
+    }
+
+    //向下移动2格
+    public void turnTwoStepsDown(int[][] theTeam, int[][] numberOfRoles, ImageView[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i + 2][j] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i + 2][j] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i + 2][j].setImage(rolesImage[i][j].getImage());
+        rolesImage[i][j].setImage(null);
+    }
+
+    //向左移动2格
+    public void turnTwoStepsLeft(int[][] theTeam, int[][] numberOfRoles, ImageView[][] rolesImage, int i, int j, boolean player) {
+        theTeam[i][j - 2] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfRoles[i][j - 2] = numberOfRoles[i][j];
+        numberOfRoles[i][j] = 0;
+        rolesImage[i][j - 2].setImage(rolesImage[i][j].getImage());
+        rolesImage[i][j].setImage(null);
+    }
+
+    //向右移动2格
+    public void turnTwoStepsRight(int[][] theTeam, int[][] numberOfAnimal, ImageView[][] animalImage, int i, int j, boolean player) {
+        theTeam[i][j + 2] = theTeam[i][j];
+        theTeam[i][j] = 0;
+        numberOfAnimal[i][j + 2] = numberOfAnimal[i][j];
+        numberOfAnimal[i][j] = 0;
+        animalImage[i][j + 2].setImage(animalImage[i][j].getImage());
+        animalImage[i][j].setImage(null);
+    }
+    
+    //改变界面上rectangles可否点击
+    public void setDisable(int[][] theTeam, boolean player, Rectangle[][] rectangles) {
+    	if(player) {
+    		for (int i = 0; i < 10; i++) {
+    			for (int j = 0; j < 10; j++) {
+    				if(theTeam[i][j] == -1)
+    					rectangles[i][j].setDisable(true);
+    				else
+    					rectangles[i][j].setDisable(false);
+    			}
+    		}
+    	}
+    	else {
+    		for (int i = 0; i < 10; i++) {
+    			for (int j = 0; j < 10; j++) {
+    				if(theTeam[i][j] == 1)
+    					rectangles[i][j].setDisable(true);
+    				else
+    					rectangles[i][j].setDisable(false);
+    			}
+    		}
+    	}
+    }
+
+    //判断当前界面是否已点击
+    public boolean isClick(Rectangle[][] rectangle) {
+        int count = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (rectangle[i][j].getOpacity() < 0.2) {
+                    count++;
+                }
+            }
+        }
+        if (count == 100) {
+            return false;
+        }
+        else
+            return true;
+    }
+}

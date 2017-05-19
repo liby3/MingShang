@@ -1,0 +1,43 @@
+package Map;
+
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class MapImage {
+	private ImageView mapImage[][];
+	public MapImage(int theTeam[][], int numberOfMap[][]) throws FileNotFoundException {
+		mapImage = new ImageView[10][10];
+        for(int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                mapImage[i][j] = new ImageView();
+                if (theTeam[i][j] == 1) {
+                    switch (numberOfMap[i][j]) {
+                        case 9:
+                        	Image capitalCityLeft = new Image("pic/map/capitalCityLeft.png");
+                        	mapImage[i][j].setImage(capitalCityLeft);
+                            break;
+                        default:
+                            mapImage[i][j] = new ImageView();
+                            break;
+                    }
+                }
+                else if (theTeam[i][j] == -1){
+                	switch (numberOfMap[i][j]) {
+                    	case 9:
+                    		Image capitalCityRight = new Image("pic/map/capitalCityRight.png");
+                        	mapImage[i][j].setImage(capitalCityRight);
+                        	break;
+                    	default:
+                    		mapImage[i][j] = new ImageView();
+                    		break;
+                	}
+                }
+            }
+        }
+    }
+    public ImageView[][] getMapImage(){
+        return mapImage;
+    }
+}

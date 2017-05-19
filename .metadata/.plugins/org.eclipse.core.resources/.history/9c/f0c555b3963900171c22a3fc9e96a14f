@@ -1,0 +1,110 @@
+package GameRule;
+
+public class WhetherWin {
+    private GameRule rule;
+    public WhetherWin(){
+        rule = new GameRule();
+    }
+
+    //判断左方是否死光
+    public boolean leftDiedOut(int[][] theTeam){
+        for(int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if(theTeam[i][j] == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //判断右方是否死光
+    public boolean rightDiedOut(int[][] theTeam){
+        for(int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if(theTeam[i][j] == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //判断右方是否进入左方洞穴
+    public boolean rightEnter(int[][] theTeam){
+        if(theTeam[9][0] == -1)
+            return true;
+        else
+            return false;
+    }
+
+    //判断左方是否进入右方洞穴
+    public boolean leftEnter(int[][] theTeam){
+        if(theTeam[0][9] == 1)
+            return true;
+        else
+            return false;
+    }
+
+    //判断左方是否无子可动
+    public boolean leftCannotMove(int[][] theTeam, int[][]numberOfRoles, int[][]numberOfMap) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(theTeam[i][j] == 1){
+                    if(numberOfRoles[i][j] == Control.infantry || numberOfRoles[i][j] == Control.gunman){
+                    	if(rule.canNormalUp(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalDown(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if (rule.canNormalLeft(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalRight(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                    }
+                    else {
+                        if(rule.canNormalUp(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalDown(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if (rule.canNormalLeft(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalRight(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    //判断右方是否无子可动
+    public boolean rightCannotMove(int[][] theTeam, int[][]numberOfRoles, int[][]numberOfMap){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(theTeam[i][j] == -1){
+                    if(numberOfRoles[i][j] == Control.infantry){
+                    	if(rule.canNormalUp(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalDown(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if (rule.canNormalLeft(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalRight(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                    }
+                    else {
+                        if(rule.canNormalUp(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalDown(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if (rule.canNormalLeft(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                        else if(rule.canNormalRight(theTeam, numberOfMap, numberOfMap, i, j))
+                            return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}

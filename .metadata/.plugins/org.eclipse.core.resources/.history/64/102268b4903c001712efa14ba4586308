@@ -1,0 +1,43 @@
+package Roles;
+
+import GameRule.Control;
+import GameRule.GameRule;
+
+public class NoCharacter extends Character {
+	public NoCharacter(int initX, int initY, int team) {
+		super(initX, initY, team);
+		this.level = Character.nocharacter;
+		this.attackDistance = Character.nocharacter;
+		this.moveDistance = Character.nocharacter;
+		this.figure = null;
+		setCharacterViewAttribute();
+	}
+	
+	public int judgeAction(int k, int m, int i, int j, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, GameRule g) {
+		if (g.canMoveOneStep(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && (i == k - 1 && j == m)) {
+			return Control.UP;
+		}
+		else if (g.canMoveOneStep(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && i == k + 1 && j == m) {
+			return Control.DOWN;
+		}
+		else if (g.canMoveOneStep(Control.LEFT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m - 1 && i == k) {
+			return Control.LEFT;
+		}
+		else if (g.canMoveOneStep(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && j == m + 1 && i == k) {
+			return Control.RIGHT;
+		}
+		else if (g.canMoveTwoSteps(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && i == k - 2 && j == m) {
+			return Control.UP2;
+		}
+		else if (g.canMoveTwoSteps(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && i == k + 2 && j == m) {
+			return Control.DOWN2;
+		}
+		else if (g.canMoveTwoSteps(Control.LEFT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m - 1 && i == k) {
+			return Control.LEFT2;
+		}
+		else if (g.canMoveTwoSteps(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && j == m + 1 && i == k) {
+			return Control.RIGHT2;
+		}
+		return Control.INVALID;
+	}
+}

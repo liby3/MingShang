@@ -1,0 +1,21 @@
+package Roles;
+
+import Player.PlayerActions;
+import javafx.scene.image.Image;
+
+public class Archer extends Character {
+	public Archer(int initX, int initY, int team) {
+		super(initX, initY, team);
+		level = Character.archer;
+		attackDistance = Character.attackDistanceLong;
+		moveDistance = Character.moveDistanceShort;
+		if (team == PlayerActions.LEFT_PLAYER) {
+			figure = new Image("pic/roles/left/archerLeft.png");
+		}
+		else {
+			
+			figure = new Image("pic/roles/right/archerRight.png");
+		}
+		setCharacterViewAttribute();
+	}
+}

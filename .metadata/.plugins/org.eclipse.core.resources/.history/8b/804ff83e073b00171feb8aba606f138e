@@ -1,0 +1,108 @@
+package GameRule;
+
+public class WhetherWin {
+    private GameRule rule;
+    public WhetherWin(){
+        rule = new GameRule();
+    }
+
+    //判断左方是否死光
+    public boolean leftDiedOut(int[][] theTeam){
+        for(int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if(theTeam[i][j] == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //判断右方是否死光
+    public boolean rightDiedOut(int[][] theTeam){
+        for(int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if(theTeam[i][j] == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //判断右方是否进入左方洞穴
+    public boolean rightEnter(int[][] theTeam){
+        if(theTeam[9][0] == -1)
+            return true;
+        else
+            return false;
+    }
+
+    //判断左方是否进入右方洞穴
+    public boolean leftEnter(int[][] theTeam){
+        if(theTeam[0][9] == 1)
+            return true;
+        else
+            return false;
+    }
+
+    
+    public boolean enterTheCapital(int player, int[][] theTeam) {
+    	boolean result = true;
+    }
+    
+    public boolean canNotMove(int player, int[][] theTeam, int[][] numberOfRoles, int[][] numberOfMap) {
+    	boolean result = false;
+    	for (int i = 0; i < 10; i++) {
+    		for (int j = 0; j < 10; j++) {
+    			if (player == Control.LEFT_PLAYER) {
+    				if (numberOfRoles[i][j] == Control.infantry || numberOfRoles[i][j] == Control.gunman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else if (numberOfRoles[i][j] == Control.cavalryman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j) || rule.canMoveTwoSteps(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+    			}
+    			else {
+    				if (numberOfRoles[i][j] == Control.infantry || numberOfRoles[i][j] == Control.gunman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else if (numberOfRoles[i][j] == Control.cavalryman) {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j) || rule.canMoveTwoSteps(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+                    else {
+                    	for (int k = 1; k <= 4; k++) {
+                    		if (rule.canMoveOneStep(k, theTeam, numberOfRoles, numberOfMap, i, j)) {
+                    			result = false;
+                    		}
+                    	}
+                    }
+    			}
+    		}
+    	}
+    	return result;
+    }
+}

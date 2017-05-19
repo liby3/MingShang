@@ -1,59 +1,90 @@
 package GameRule;
 
-import UI.Page.AnimalImageView.AnimalImage;
-import javafx.scene.image.ImageView;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 
+import Roles.Character;
+import Roles.CharacterView;
+
 /**
- * Created by admin on 2017/1/3.
+ * Created by liboyang on 2017.4.9
  */
-//保存动物阵营及数字的历史信息
 @SuppressWarnings("serial")
 public class GameHistory implements Serializable {
     private int[][][]teamHistory;
-    private int[][][] animalHistory;
+    private int[][][] rolesHistory;
+    private int currentSteps;
+    private int nextStep;
+    
+    
 
-    public GameHistory(){
-        teamHistory = new int[500][7][9];
-        animalHistory = new int[500][7][9];
+    public GameHistory() {
+        teamHistory = new int[500][10][10];
+        rolesHistory = new int[500][10][10];
+        currentSteps = 0;
+        nextStep = 0;
     }
 
+    public int getCurrentSteps() {
+    	return currentSteps;
+    }
+    
+    public int getNextStep() {
+    	return nextStep;
+    }
+    
+    
+    public void addCurrentSteps() {
+    	currentSteps++;
+    }
+    
+    public void minusCurrentSteps() {
+    	currentSteps--;
+    }
+    
+    public void setNextStep(int step) {
+    	nextStep = step;
+    }
+    
+    public void resetCurrentSteps() {
+    	currentSteps = 0;
+    }
+    
     public int[][][]getTeamHistory(){
         return teamHistory;
     }
 
-    public int[][][] getAnimalHistory(){
-        return animalHistory;
+    public int[][][] getRolesHistory(){
+        return rolesHistory;
     }
 
     //将保存当前阵营信息
     public void saveTeamHistory(int[][]theTeam, int k){
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 9; j++){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
                 teamHistory[k][i][j] = theTeam[i][j];
             }
         }
     }
 
-    //保存当前动物数字信息
-    public void saveAnimalHistory(int[][]numberOfAnimal, int k){
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 9; j++){
-                animalHistory[k][i][j] = numberOfAnimal[i][j];
+    
+    public void saveRolesHistory(int[][]numberOfRoles, int k){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                rolesHistory[k][i][j] = numberOfRoles[i][j];
             }
         }
     }
 
-    //获取动物的历史阵营与数字信息以改变当前的相应信息，并且改变界面
-    public void changeMap(int[][]teamHistory, int[][]theTeam, int[][]animalHistory, int[][]numberOfAnimal, ImageView[][]animalImage) throws FileNotFoundException {
-        AnimalImage newAnimalImage = new AnimalImage(teamHistory, animalHistory);
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 9; j++){
+    
+    public void changeMap(int[][]teamHistory, int[][]theTeam, int[][]characterHistory, int[][]numberOfRoles, Character[][] character) throws FileNotFoundException {
+        CharacterView newCharacterView = new CharacterView(teamHistory, characterHistory);
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
                 theTeam[i][j] = teamHistory[i][j];
-                numberOfAnimal[i][j] = animalHistory[i][j];
-                animalImage[i][j].setImage(newAnimalImage.getAnimalImage()[i][j].getImage());
+                numberOfRoles[i][j] = characterHistory[i][j];
+                character[i][j].getCharacterView().setImage(newCharacterView.getCharacterImage()[i][j].getImage());
             }
         }
     }

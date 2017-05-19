@@ -1,0 +1,64 @@
+package GameRule;
+
+
+import javafx.scene.image.ImageView;
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+
+import Roles.Character;
+import Roles.CharacterView;
+
+/**
+ * Created by liboyang on 2017.4.9
+ */
+//保存动物阵营及数字的历史信息
+@SuppressWarnings("serial")
+public class GameHistory implements Serializable {
+    private int[][][]teamHistory;
+    private int[][][] rolesHistory;
+
+    public GameHistory(){
+        teamHistory = new int[500][10][10];
+        rolesHistory = new int[500][10][10];
+    }
+
+    public int[][][]getTeamHistory(){
+        return teamHistory;
+    }
+
+    public int[][][] getRolesHistory(){
+        return rolesHistory;
+    }
+
+    //将保存当前阵营信息
+    public void saveTeamHistory(int[][]theTeam, int k){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                teamHistory[k][i][j] = theTeam[i][j];
+            }
+        }
+    }
+
+    
+    public void saveRolesHistory(int[][]numberOfRoles, int k){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                rolesHistory[k][i][j] = numberOfRoles[i][j];
+            }
+        }
+    }
+
+    
+    public void changeMap(int[][]teamHistory, int[][]theTeam, int[][]characterHistory, int[][]numberOfRoles, Character[][]character) throws FileNotFoundException {
+        CharacterView newCharacterView = new CharacterView(teamHistory, characterHistory);
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                theTeam[i][j] = teamHistory[i][j];
+                numberOfRoles[i][j] = characterHistory[i][j];
+                character[i][j].getCharacterView().setImage(newCharacterView.getCharacterImage()[i][j].getImage());
+            }
+        }
+    }
+
+}

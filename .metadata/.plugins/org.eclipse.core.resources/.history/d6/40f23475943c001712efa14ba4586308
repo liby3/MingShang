@@ -1,0 +1,41 @@
+package Roles;
+
+import GameRule.Control;
+import GameRule.GameRule;
+import Player.PlayerActions;
+import javafx.scene.image.Image;
+
+public class Infantry extends Character {
+
+	public Infantry(int initX, int initY, int team) {
+		super(initX, initY, team);
+		level = Character.infantry;
+		attackDistance = Character.attackDistanceShort;
+		moveDistance = Character.moveDistanceShort;
+		currentDistance = Character.moveDistanceShort;
+		if (team == PlayerActions.LEFT_PLAYER) {
+			figure = new Image("pic/roles/infantryLeft.png");
+		}
+		else {
+			
+			figure = new Image("pic/roles/infantryRight.png");
+		}
+		setCharacterViewAttribute();
+	}
+	
+	public int judgeAction(int k, int m, int i, int j, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, GameRule g) {
+		if (g.canMoveOneStep(Control.UP, theTeam, numberOfRoles, numberOfMap, k, m) && i == k - 1 && j == m) {
+			return Control.UP;
+		}
+		else if (g.canMoveOneStep(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && i == k + 1 && j == m) {
+			return Control.DOWN;
+		}
+		else if (g.canMoveOneStep(Control.LEFT, theTeam, numberOfRoles, numberOfMap, k, m) && j == m - 1 && i == k) {
+			return Control.LEFT;
+		}
+		else if (g.canMoveOneStep(Control.DOWN, theTeam, numberOfRoles, numberOfMap, k, m) && j == m + 1 && i == k) {
+			return Control.RIGHT;
+		}
+		return Control.INVALID;
+	}
+}

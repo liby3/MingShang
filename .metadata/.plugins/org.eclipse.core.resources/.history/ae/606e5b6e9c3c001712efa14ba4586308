@@ -1,0 +1,144 @@
+package GameRule;
+
+public class GameRule {
+    public  GameRule() {
+    	;
+    }
+
+    
+    public boolean canMoveOneStep(int direction, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, int i, int j) {
+    	boolean result = false;
+    	switch(direction) {
+    	case Control.UP:
+    		if (i > 0) {
+                if(numberOfMap[i-1][j] == Control.areaUnavailable) {
+                    return false;
+                }
+                else if(theTeam[i][j] == theTeam[i-1][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	case Control.DOWN:
+    		if(i < 9) {
+                if(numberOfMap[i+1][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i+1][j]) {
+                	return false;
+                }
+                else{
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	case Control.LEFT:
+    		if(j > 0) {
+                if (numberOfMap[i][j-1] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j-1]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	case Control.RIGHT:
+    		if(j < 9) {
+                if(numberOfMap[i][j+1] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j+1]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	}
+    	return result;
+    }
+    
+    public boolean canMoveTwoSteps(int direction, int[][] theTeam, int[][] numberOfRoles, int[][]numberOfMap, int i, int j) {
+    	boolean result = false;
+    	switch(direction) {
+    	case Control.UP:
+    		if(i > 1) {
+                if(numberOfMap[i-1][j] == Control.areaUnavailable || numberOfMap[i-2][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i-1][j] || theTeam[i][j] == theTeam[i-2][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    		
+    	case Control.DOWN:
+    		if(i < 8) {
+                if(numberOfMap[i+1][j] == Control.areaUnavailable || numberOfMap[i+2][j] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i+1][j] || theTeam[i][j] == theTeam[i+2][j]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    		
+    	case Control.LEFT:
+    		if(j > 1) {
+                if (numberOfMap[i][j-1] == Control.areaUnavailable || numberOfMap[i][j-2] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j-1] || theTeam[i][j] == theTeam[i][j-2]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }            
+    	case Control.RIGHT:
+    		if(j < 8) {
+                if(numberOfMap[i][j+1] == Control.areaUnavailable || numberOfMap[i][j+2] == Control.areaUnavailable) {
+                	return false;
+                }
+                else if(theTeam[i][j] == theTeam[i][j+1] || theTeam[i][j] == theTeam[i][j+2]) {
+                	return false;
+                }
+                else {
+                	return true;
+                }
+            }
+            else {
+            	return false;
+            }
+    	}
+    	return result;	
+    }
+}
