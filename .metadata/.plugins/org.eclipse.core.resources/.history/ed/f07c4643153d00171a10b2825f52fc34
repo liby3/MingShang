@@ -1,0 +1,54 @@
+package DifferentPanes;
+
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+/**
+ * Created by admin on 2016/12/24.
+ */
+
+//帮助界面
+public class HelpPane extends Pane{
+    Label helpInformation;
+    ImageView imageView;
+    Button bt1;
+    String s1;
+    String s2;
+    public HelpPane(){
+        super();
+        imageView = new ImageView("pic/map/HelpPage.jpg");
+        getChildren().add(imageView);
+        bt1 = new Button(("返回"));
+
+        bt1.setLayoutX(400);
+        bt1.setLayoutY(400);
+
+        getChildren().add(bt1);
+        s1 = "左右双方交替走棋，鼠标左键置于本方的任意部队上方，可出现其可走的格子，左击该部队可命令其走路。";
+        s2 = "获胜条件是消灭对方之有生力量或者攻入对方首都。";
+
+        helpInformation = new Label(s1 + '\n' + '\n' + s2);
+        helpInformation.setPadding(new Insets(20,20,20,20));
+        helpInformation.setLayoutX(200);
+        helpInformation.setLayoutY(50);
+        getChildren().add(helpInformation);
+    }
+
+    public ImageView getImageView(){
+        return imageView;
+    }
+    
+    // Back to Welcome pane.
+    public Button getBt1(){
+        return bt1;
+    }
+    public String getS1(){
+        return  s1;
+    }
+}
+
+
+

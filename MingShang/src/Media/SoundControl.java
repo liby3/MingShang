@@ -9,20 +9,18 @@ public class SoundControl {
     Media music;
     MediaPlayer mediaPlayer, musicPlayer;
     public SoundControl(){
-        soundName = new String[8];
-        soundName[0] = "Mouse.mp3";
-        soundName[1] = "Cat.mp3";
-        soundName[2] = "Wolf.mp3";
-        soundName[3] = "Dog.mp3";
-        soundName[4] = "Leopard.mp3";
-        soundName[5] = "Tiger.mp3";
-        soundName[6] = "Lion.mp3";
-        soundName[7] = "Elephant.mp3";
+        soundName = new String[6];
+        soundName[0] = "leftInfantry.mp3";
+        soundName[1] = "leftArcher.mp3";
+        soundName[2] = "leftCavalryman.mp3";
+        soundName[3] = "rightInfantry.mp3";
+        soundName[4] = "rightArcher.mp3";
+        soundName[5] = "rightCavalryman.mp3";
         sounds = new Media[soundName.length];
-        for(int i=0;i<soundName.length;i++){
+        for(int i = 0;i < soundName.length;i++){
             sounds[i] = new Media(SoundControl.class.getResource("/audio/" + soundName[i]).toString());
         }
-        music = new Media(SoundControl.class.getResource("/audio/BGM.mp3").toString());
+        music = new Media(SoundControl.class.getResource("/audio/bgm.mp3").toString());
 
     }
 

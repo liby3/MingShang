@@ -16,10 +16,12 @@
 <fullyQualifiedTypeName name="Roles.CharacterView"/>
 <fullyQualifiedTypeName name="Roles.NoCharacter"/>
 <fullyQualifiedTypeName name="Roles.Character"/>
-<fullyQualifiedTypeName name="Player.PlayerActions"/>
 <fullyQualifiedTypeName name="GameRule.Control"/>
 <fullyQualifiedTypeName name="GameRule.GameHistory"/>
 <fullyQualifiedTypeName name="FileOperation.ReadRoles"/>
 <fullyQualifiedTypeName name="GameRule.GameRule"/>
 <fullyQualifiedTypeName name="Roles.Infantry"/>
+<fullyQualifiedTypeName name="javafx.scene.shape.Rectangle"/>
+<fullyQualifiedTypeName name="Map.DrawRectangle"/>
+<fullyQualifiedTypeName name="Player.PlayerActions"/>
 </qualifiedTypeNameHistroy>

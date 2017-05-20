@@ -11,6 +11,7 @@
 .label{
     -fx-background-color:rgb(255,255,255,0.3);
     -fx-background-radius:15;
+    -fx-font-size:20;
 }
 .list-view{
     -fx-base:transparent;

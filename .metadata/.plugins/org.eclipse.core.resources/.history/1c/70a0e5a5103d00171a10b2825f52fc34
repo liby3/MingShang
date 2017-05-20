@@ -1,0 +1,42 @@
+package Media;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+public class SoundControl {
+    String[] soundName;
+    Media[] sounds;
+    Media music;
+    MediaPlayer mediaPlayer, musicPlayer;
+    public SoundControl(){
+        soundName = new String[7];
+        soundName[0] = "bgm.mp3";
+        soundName[1] = "leftInfantry.ogg";
+        soundName[2] = "leftArcher.ogg";
+        soundName[3] = "leftCavalryman.ogg";
+        soundName[4] = "rightInfantry.ogg";
+        soundName[5] = "rightArcher.ogg";
+        soundName[6] = "rightCavalryman.ogg";
+        sounds = new Media[soundName.length];
+        for(int i=0;i<soundName.length;i++){
+            sounds[i] = new Media(SoundControl.class.getResource("/audio/" + soundName[i]).toString());
+        }
+        music = new Media(SoundControl.class.getResource("/audio/bgm.mp3").toString());
+
+    }
+
+    public void play(int index){
+        if(mediaPlayer != null){
+            mediaPlayer.stop();
+        }
+        mediaPlayer = new MediaPlayer(sounds[index]);
+        mediaPlayer.setCycleCount(1);
+        mediaPlayer.play();
+    }
+    public void music(){
+        musicPlayer = new MediaPlayer(music);
+        musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        musicPlayer.play();
+
+    }
+}

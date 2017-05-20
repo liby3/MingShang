@@ -31,7 +31,7 @@ public class MainStage extends Application {
         helpPane.setVisible(false);
         loadPane.setVisible(false);
         mainPane.getChildren().addAll(welcomePane, mapPane, helpPane, loadPane);
-        
+        loadPane.refresh();
         primaryStage.setResizable(false);
         Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
         sound = new Media.SoundControl();
@@ -39,6 +39,7 @@ public class MainStage extends Application {
 
         //welcome page
         welcomePane.getBt1().setOnAction(e-> {
+        	loadPane.refresh();
             welcomePane.setVisible(false);
             mapPane.setVisible(true);
         });
@@ -47,6 +48,7 @@ public class MainStage extends Application {
             helpPane.setVisible(true);
         });
         welcomePane.getBt3().setOnAction(e-> {
+        	loadPane.refresh();
             welcomePane.setVisible(false);
             loadPane.setVisible(true);
         });
@@ -68,6 +70,7 @@ public class MainStage extends Application {
 
         //load page
         loadPane.getBt1().setOnAction(e-> {
+        	loadPane.refresh();
             loadPane.setVisible(false);
             welcomePane.setVisible(true);
         });
@@ -80,6 +83,7 @@ public class MainStage extends Application {
                 history.changeMap(history.getTeamHistory()[steps], mapPane.getRoles().getTheTeam(), 
                 		history.getRolesHistory()[steps], mapPane.getRoles().getNumberOfRoles(), 
                 		mapPane.getCharacter());
+                loadPane.refresh();
                 loadPane.setVisible(false);
                 mapPane.setVisible(true);
 

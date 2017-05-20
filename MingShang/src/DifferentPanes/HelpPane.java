@@ -16,6 +16,7 @@ public class HelpPane extends Pane{
     ImageView imageView;
     Button bt1;
     String s1;
+    String s2;
     public HelpPane(){
         super();
         imageView = new ImageView("pic/map/HelpPage.jpg");
@@ -26,12 +27,13 @@ public class HelpPane extends Pane{
         bt1.setLayoutY(400);
 
         getChildren().add(bt1);
-        s1 = "测试说明文档，稍后补充";
+        s1 = "左右双方交替走棋，鼠标左键置于本方的任意部队上方，可出现其可走的格子，左击该部队可命令其走路。";
+        s2 = "获胜条件是消灭对方之有生力量或者攻入对方首都。";
 
-        helpInformation = new Label(s1);
-        helpInformation.setPadding(new Insets(20,20,20,20));
-        helpInformation.setLayoutX(400);
-        helpInformation.setLayoutY(50);
+        helpInformation = new Label(s1 + '\n' + '\n' + s2);
+        helpInformation.setPadding(new Insets(50,50,50,50));
+        helpInformation.setLayoutX(200);
+        helpInformation.setLayoutY(100);
         getChildren().add(helpInformation);
     }
 
